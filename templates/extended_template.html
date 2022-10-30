@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Allah Akbar </h1>
+{{super()}}
+
+<h1> Call the url  </h1>
+    <a href="{{url_for('testroute')}}">Test url </a>
+
+    <a href="{{url_for('welcomeuser',user='Noha', email='noha@gmail.com')}}">Noha </a>
+{% endblock %}

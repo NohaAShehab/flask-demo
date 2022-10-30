@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <pre>
+    {{user_name}}
+    {{info}}
+    name: {{info["name"]}}
+    course : {{info['courses'][0]}}
+        ================= XSS Attacks ============================
+    bio: {{info['bio']}} ---> flask apply escaping
+    bio: {{info['bio']| safe}} ---> flask apply escaping
+    </pre>
+
+    <h1> For loop </h1>
+    {% for course in info['courses'] %}
+        <li>{{course}}</li>
+    {% endfor %}
+
+    <h1> Macro in flask</h1>
+    {% macro render_list(list) %}
+        {% for item in list %}
+            <li> {{item}} </li>
+        {% endfor %}
+    {% endmacro %}
+
+
+    <ol> {{render_list(info['courses'])}}</ol>
+
+
+<h1> Import Macros </h1>
+{% import 'macros.html' as mm %}
+<ul> {{mm.render_list_tuple(info['courses'])}} </ul>
+
+
+
+
+
+
+
+
+    <script>
+        alert("hello world")
+    </script>
+
+</body>
+</html>
